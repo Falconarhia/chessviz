@@ -12,5 +12,5 @@ void show_deska (char deska[8][8])
 		printf("\n");
 	}
 
-printf("a b c d e f g h\n");
+printf("  a b c d e f g h\n");
 }
