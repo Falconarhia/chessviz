@@ -1,7 +1,4 @@
-!*.c
-!*.h
+!src/*.c
+!src/*.h
 !Makefile
 !.gitignore
-gf.c
-nani
-Nani_Deska
