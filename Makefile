@@ -1,10 +1,14 @@
-CHESSVIZ: board_print_plain.o main.o
-	gcc -std=c99 -Wall -Werror build/board_print_plain.o build/main.o -o CHESSVIZ 
+CHESSVIZ: mkdir_bin board_print_plain.o main.o
+	gcc -std=c99 -Wall -Werror build/board_print_plain.o build/main.o -o bin/CHESSVIZ 
 
-board_print_plain.o: src/board_print_plain.c
+board_print_plain.o: mkdir_build src/board_print_plain.c
 	gcc -std=c99 -Wall -Werror -c src/board_print_plain.c -o build/board_print_plain.o
-main.o: src/main.c
+main.o: mkdir_build src/main.c
 	gcc -std=c99 -Wall -Werror -c src/main.c -o build/main.o
+mkdir_bin:
+	mkdir bin
+mkdir_build:
+	mkdir build
 .PHONY:clean
 clean: 
-	rm CHESSVIZ build/*.o
+	rm -rf bin build
