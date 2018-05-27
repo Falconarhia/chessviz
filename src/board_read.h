@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 
-int read_next(FILE* in, char* str);
+char* read_next(FILE* in, char* str, size_t len);
+int read_file(const char* filename);
 
 #endif 
