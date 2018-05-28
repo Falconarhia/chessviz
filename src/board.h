@@ -21,4 +21,5 @@ struct Turn {
 int parce(struct Turn* t, const char* str);
 int knight_check_move(struct Step* t);
 int knight_move(struct Step* t, char board[8][8]);
+int move(struct Step* t, char board[8][8]);
 #endif
