@@ -225,7 +225,6 @@ int knight_move(struct Step* t, char board[8][8]){
 
 	if(t->action == '-') {
 		if(board[stop_y][stop_x] != ' ') {
-			printf("%d %d %c\n",stop_y, stop_x, board[stop_y][stop_x]);
 			return -1;
 		}
 	}
@@ -251,4 +250,17 @@ int knight_move(struct Step* t, char board[8][8]){
 	board[start_y][start_x] = ' ';
 	board[stop_y][stop_x] = f;
 	return 0;
+}
+
+
+int move(struct Step* t, char board[8][8]){
+	int start_x = t->x[0] - 97;
+	int start_y = 8 - (t->y[0] - 48);
+	int stop_x = t->x[1] - 97;
+	int stop_y = 8 - (t->y[1] - 48);
+	char f = board[start_y][start_x];
+	board[start_y][start_x] = ' ';
+	board[stop_y][stop_x] = f;
+	return 0;
+
 }
