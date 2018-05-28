@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 struct Step{
 	char figure[2];
@@ -18,5 +19,6 @@ struct Turn {
 };
 
 int parce(struct Turn* t, const char* str);
-int knight_check_move(struct Turn* t);
+int knight_check_move(struct Step* t);
+int knight_move(struct Step* t, char board[8][8]);
 #endif

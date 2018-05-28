@@ -192,19 +192,58 @@ int parce(struct Turn* t, const char* str) {
 }
 
 
-int knight_check_move(struct Turn* t) {
-	if(abs(t->turn.x[0] - t->turn.x[1]) == 2) {
-		if(abs(t->turn.y[0] - t->turn.y[1]) == 1) {
+int knight_check_move(struct Step* t) {
+	if(abs(t->x[0] - t->x[1]) == 2) {
+		if(abs(t->y[0] - t->y[1]) == 1) {
 			return 0;
 		}
 	}
-	else if(abs(t->turn.x[0] - t->turn.x[1]) == 1) {
-		if(abs(t->turn.y[0] - t->turn.y[1]) == 2) {
+	else if(abs(t->x[0] - t->x[1]) == 1) {
+		if(abs(t->y[0] - t->y[1]) == 2) {
 			return 0;
 		}	
 	}
 	else {
 		return -1;
 	}
+	return 0;
+}
+
+int knight_move(struct Step* t, char board[8][8]){
+	if(knight_check_move(t) == -1) {
+		return -1;
+	}
+
+	int start_x = t->x[0] - 48;
+	int start_y = t->y[0] - 48;
+	int stop_x = t->x[1] - 48;
+	int stop_y = t->y[1] - 48;
+
+	if(t->action == '-') {
+		if(board[stop_y][stop_x] != ' ') {
+			return -1;
+		}
+	}
+	else if(t->action == 'x') {
+		if(t->figure[0] == 'N') {
+			if((board[stop_y][stop_x] >= 'A') && (board[stop_y][stop_x] <= 'Z')) {
+				return -1;
+			}
+		}
+		else if(t->figure[0] == 'n') {
+			if((board[stop_y][stop_x] >= 'a') && (board[stop_y][stop_x] <= 'z')) {
+				return -1;
+			}
+		}
+		else {
+			return -1;
+		}
+	}
+	else {
+		return -1;
+	}
+
+	board[start_y][start_x] = ' ';
+	board[stop_y][stop_x] = t->figure[0];
 	return 0;
 }
