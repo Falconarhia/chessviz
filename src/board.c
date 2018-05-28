@@ -190,3 +190,21 @@ int parce(struct Turn* t, const char* str) {
 	return -1;
 	
 }
+
+
+int knight_check_move(struct Turn* t) {
+	if(abs(t->turn.x[0] - t->turn.x[1]) == 2) {
+		if(abs(t->turn.y[0] - t->turn.y[1]) == 1) {
+			return 0;
+		}
+	}
+	else if(abs(t->turn.x[0] - t->turn.x[1]) == 1) {
+		if(abs(t->turn.y[0] - t->turn.y[1]) == 2) {
+			return 0;
+		}	
+	}
+	else {
+		return -1;
+	}
+	return 0;
+}

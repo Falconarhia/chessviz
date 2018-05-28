@@ -18,4 +18,5 @@ struct Turn {
 };
 
 int parce(struct Turn* t, const char* str);
+int knight_check_move(struct Turn* t);
 #endif
