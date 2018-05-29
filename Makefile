@@ -3,8 +3,7 @@ CHESSVIZ: mkdir_bin board_print_plain.o board_read.o board.o main.o
 
 test: CHESSVIZ_TEST
 	bin/CHESSVIZ_TEST
-
-CHESSVIZ_TEST: mkdir_bin board_print_plain.o board_read.o board.o main.o board_test.o main_test.o 
+CHESSVIZ_TEST: mkdir_bin board_print_plain.o board_read.o board.o main.o board_test.o main_test.o
 	gcc -std=c99 -Wall -Werror build/board.o build/test/board_test.o build/test/main.o -o bin/CHESSVIZ_TEST
 
 board_test.o: board_print_plain.o board_read.o board.o test/board_test.c
@@ -26,10 +25,12 @@ main.o: mkdir_build src/main.c
 	gcc -std=c99 -Wall -Werror -c src/main.c -o build/main.o
 
 mkdir_bin:
-	mkdir bin
+	if [ ! -d "bin" ]; then mkdir bin; fi
 	
 mkdir_build:
-	mkdir build && mkdir build/test
+	if [ ! -d "build" ]; then mkdir build; fi
+	if [ ! -d "build/test" ]; then mkdir build/test; fi
+
 
 .PHONY:clean test
 clean: 
