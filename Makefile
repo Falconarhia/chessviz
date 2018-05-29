@@ -1,7 +1,10 @@
 CHESSVIZ: mkdir_bin board_print_plain.o board_read.o board.o main.o 
 	gcc -std=c99 -Wall -Werror build/board_print_plain.o build/board_read.o build/board.o build/main.o -o bin/CHESSVIZ
 
-test: mkdir_bin board_print_plain.o board_read.o board.o main.o board_test.o main_test.o
+test: CHESSVIZ_TEST
+	bin/CHESSVIZ_TEST
+
+CHESSVIZ_TEST: mkdir_bin board_print_plain.o board_read.o board.o main.o board_test.o main_test.o 
 	gcc -std=c99 -Wall -Werror build/board.o build/test/board_test.o build/test/main.o -o bin/CHESSVIZ_TEST
 
 board_test.o: board_print_plain.o board_read.o board.o test/board_test.c
