@@ -1,4 +1,6 @@
 !src/*.c
 !src/*.h
+!thidparty/ctest.h
+!test/*.c
 !Makefile
 !.gitignore
