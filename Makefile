@@ -1,5 +1,14 @@
 CHESSVIZ: mkdir_bin board_print_plain.o board_read.o board.o main.o 
-	gcc -std=c99 -Wall -Werror build/board_print_plain.o build/board_read.o build/board.o build/main.o -o bin/CHESSVIZ 
+	gcc -std=c99 -Wall -Werror build/board_print_plain.o build/board_read.o build/board.o build/main.o -o bin/CHESSVIZ
+
+test: mkdir_bin board_print_plain.o board_read.o board.o main.o board_test.o main_test.o
+	gcc -std=c99 -Wall -Werror build/board.o build/test/board_test.o build/test/main.o -o bin/CHESSVIZ_TEST
+
+board_test.o: board_print_plain.o board_read.o board.o test/board_test.c
+	gcc -std=c99 -Wall -Werror -I thirdparty -I src -c test/board_test.c -o build/test/board_test.o
+
+main_test.o: board_test.o test/main.c
+	gcc -std=c99 -Wall -Werror -I thirdparty -I src -c test/main.c -o build/test/main.o
 
 board_print_plain.o: mkdir_build src/board_print_plain.c
 	gcc -std=c99 -Wall -Werror -c src/board_print_plain.c -o build/board_print_plain.o
@@ -17,8 +26,8 @@ mkdir_bin:
 	mkdir bin
 	
 mkdir_build:
-	mkdir build
+	mkdir build && mkdir build/test
 
-.PHONY:clean
+.PHONY:clean test
 clean: 
 	rm -rf bin build
