@@ -354,3 +354,92 @@ CTEST(rook, action)
     const int expected = 8;
     ASSERT_EQUAL(expected, a);
 }
+
+
+CTEST(knight, move)
+{
+    // Given
+    struct Turn z;
+    const int a = parce(&z, "1. Na1-b1 Nd2-d3");
+
+    // Then
+    const int expected = 0;
+    ASSERT_EQUAL(expected, a);
+}
+
+CTEST(knight, checkmate)
+{
+    // Given
+    struct Turn z;
+    const int a = parce(&z, "1. Na1-b1#");
+
+    // Then
+    const int expected = 0;
+    ASSERT_EQUAL(expected, a);
+}
+
+CTEST(knight, start_x)
+{
+    // Given
+    struct Turn z;
+    const int a = parce(&z, "1. Nz1-b1#");
+
+    // Then
+    const int expected = 5;
+    ASSERT_EQUAL(expected, a);
+}
+
+CTEST(knight, start_y)
+{
+    // Given
+    struct Turn z;
+    const int a = parce(&z, "1. Na11-b1#");
+
+    // Then
+    const int expected = 7;
+    ASSERT_EQUAL(expected, a);
+}
+
+CTEST(knight, stop_x)
+{
+    // Given
+    struct Turn z;
+    const int a = parce(&z, "1. Na1-x1#");
+
+    // Then
+    const int expected = 8;
+    ASSERT_EQUAL(expected, a);
+}
+
+CTEST(knight, stop_y)
+{
+    // Given
+    struct Turn z;
+    const int a = parce(&z, "1. Na1-b15#");
+
+    // Then
+    const int expected = 10;
+    ASSERT_EQUAL(expected, a);
+}
+
+CTEST(knight, pwbit)
+{
+    // Given
+    struct Turn z;
+    const int a = parce(&z, "1. Na1xb1#");
+
+    // Then
+    const int expected = 0;
+    ASSERT_EQUAL(expected, a);
+}
+
+CTEST(knight, action)
+{
+    // Given
+    struct Turn z;
+    const int a = parce(&z, "1. Na1+b1#");
+
+    // Then
+    const int expected = 8;
+    ASSERT_EQUAL(expected, a);
+}
